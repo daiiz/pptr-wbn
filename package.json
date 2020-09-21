@@ -1,0 +1,16 @@
+{
+  "name": "pptr-wbn",
+  "version": "1.0.0",
+  "description": "Experiment: Build Web Bundles (wbn) with Puppeteer",
+  "main": "./src/index.js",
+  "scripts": {
+    "main": "node ./src/index.js"
+  },
+  "author": "daiiz",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^5.3.0",
+    "wbn": "0.0.5"
+  }
+}
