@@ -50,7 +50,7 @@ const main = async primaryURL => {
     return document.querySelector('html').outerHTML
   })
   const title = await page.evaluate(() => {
-    return document.title.replace(/\s/g, '_')
+    return document.title.replace(/[\s/]/g, '_')
   })
   await browser.close()
   // Web Bundle fileを作る
