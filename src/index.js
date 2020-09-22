@@ -39,15 +39,19 @@ const main = async primaryURL => {
     }
     return request.continue()
   })
-  await page.goto(primaryURL, { waitUntil: 'networkidle2' })
+  await page.goto(primaryURL) // { waitUntil: 'networkidle2' }
+  await page.evaluate(() => {
+    window.scrollTo(0, 10)
+  })
+  await page.waitFor(10 * 1000)
   // wbn表示時にclient jsのエラーでSPAの初期画面が描画されないのを防ぐため、
   // primaryURLに対するレスポンスはPuppeteerで表示されたHTMLテキストとする
   const primaryHtml = await page.evaluate(() => {
     return document.querySelector('html').outerHTML
-  }, '')
+  })
   const title = await page.evaluate(() => {
     return document.title.replace(/\s/g, '_')
-  }, '')
+  })
   await browser.close()
   // Web Bundle fileを作る
   await buildWbn(primaryURL, primaryHtml, title, null, requestList)
